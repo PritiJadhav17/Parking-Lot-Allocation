@@ -9,6 +9,13 @@ class ParkingOperation:
         self.parking_times = [None] * self.total_spots
         self.hourly_rate = 10  # rate per hour
 
+    def add_parking_spot(self):
+        """Add one more parking spot."""
+        self.total_spots += 1
+        self.parking_spots.append(None)
+        self.parking_times.append(None)
+        print(f"New parking spot added. Total spots: {self.total_spots}")
+    
     def save_data(self):
         with open('parking_operation.pkl', 'wb') as file:
             pickle.dump((self.parking_spots, self.parking_times, self.hourly_rate), file)

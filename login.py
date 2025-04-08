@@ -10,7 +10,7 @@ class Login:
     def __init__(self, parking_operation):
         self.users = {
             "admin": User("admin", "admin123", "admin"),
-            "user": User("user", "user123", "user")
+            "user": User("priti", "priti123", "user")
         }
         self.current_user = None
         self.parking_operation = parking_operation
@@ -45,7 +45,7 @@ class Login:
 
     def logout(self):
         self.current_user = None
-        return "Logged out successfully"
+        return "Logged out successfully ! ...."
 
     def login_page(self):
         """Show login page or registration page.""" 
@@ -80,9 +80,9 @@ class Login:
             table = PrettyTable()
             table.field_names = ["No.", "Action"]
             table.add_row(["1", "Display Parking Lot"])
-            table.add_row(["2", "Remove Car"])
-            table.add_row(["3", "Adjust Hourly Rate"])
-            table.add_row(["4", "View Registered Users"])
+            table.add_row(["2", "Adjust Hourly Rate"])
+            table.add_row(["3", "View Registered Users"])
+            table.add_row(["4", "Add Parking Spot"])
             table.add_row(["5", "Logout"])
             print("\nUser Panel Menu:")
             print(table)
@@ -90,14 +90,13 @@ class Login:
             if choice == "1":
                 self.parking_operation.display_parking_lot()
             elif choice == "2":
-                car_number = input("Enter car number to remove: ")
-                print(self.parking_operation.remove_car(car_number))
-            elif choice == "3":
                 new_rate = input("Enter new hourly rate: ")
                 self.parking_operation.set_hourly_rate(float(new_rate))
                 print(f"Hourly rate updated to (₹){new_rate}/hour")
-            elif choice == "4":
+            elif choice == "3":
                 self.display_registered_users()  # Display all users
+            elif choice == "4":
+                self.parking_operation.add_parking_spot()  # Call to add a new parking spot
             elif choice == "5":
                 print(self.logout())
                 break
@@ -109,7 +108,8 @@ class Login:
             table.add_row(["1", "Park Car"])
             table.add_row(["2", "Remove Car"])
             table.add_row(["3", "Display Parking Lot"])
-            table.add_row(["4", "Logout"])
+            table.add_row(["4", "Add Parking Spot"])
+            table.add_row(["5", "Logout"])
             print("\nUser Panel Menu:")
             print(table)
             choice = input("Choose an option: ")
@@ -122,6 +122,8 @@ class Login:
             elif choice == "3":
                 self.parking_operation.display_parking_lot()
             elif choice == "4":
+                self.parking_operation.add_parking_spot()  # Call to add a new parking spot
+            elif choice == "5":
                 print(self.logout())
                 break
 
